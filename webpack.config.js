@@ -1,5 +1,5 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     devServer: {
@@ -13,9 +13,9 @@ module.exports = {
         loaders: [
             {
                 test:    /\.js$/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['react', 'es2015']
+                loader:  'babel-loader',
+                query:   {
+                    presets: ['react', 'env']
                 },
                 exclude: /node_modules/
             },
