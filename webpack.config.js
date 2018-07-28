@@ -3,9 +3,10 @@ const webpack = require('webpack');
 
 module.exports = {
     devServer: {
-        inline:      true,
-        contentBase: './src',
-        port:        3000
+        inline:             true,
+        contentBase:        './src',
+        port:               3000,
+        historyApiFallback: true
     },
     devtool:   'cheap-module-eval-source-map',
     entry:     './dev/js/index.js',
@@ -15,9 +16,10 @@ module.exports = {
                 test:    /\.js$/,
                 loader:  'babel-loader',
                 query:   {
-                    presets: ['react', 'env']
+                    presets: ['stage-0', 'react', 'env']
                 },
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                plugins: ['transform-object-rest-spread']
             },
             {
                 test:   /\.scss/,
