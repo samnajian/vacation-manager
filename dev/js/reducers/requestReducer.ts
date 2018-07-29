@@ -1,20 +1,21 @@
-const initialState = {
-    requests: []
-};
+import {getRequests} from '../utils/localStorage';
+import IRequestState from './request/IRequestState';
+
+const initialState = getRequests();
 
 //actions
-const ADD_REQUEST = '@@VM/request/ADD';
+const ADD = '@@VM/request/ADD';
 
 // action creators
 export const actionAddRequest = (employeeData) => ({
-    type:    ADD_REQUEST,
+    type: ADD,
     payload: employeeData
 });
 
 // reducer
-export default (state = initialState, action) => {
+export default (state: IRequestState = initialState, action) => {
     const handler = {
-        ADD_REQUEST: () => ({...state, requests: [state.requests, ...action.payload]})
+        [ADD]: () => ({...state, requests: [...state.requests, action.payload]})
     }[action.type];
     return handler ? handler() : state;
 };

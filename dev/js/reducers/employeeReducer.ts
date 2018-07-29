@@ -1,9 +1,8 @@
 import IEmployee from './employee/IEmployee';
 import IEmployeesState from './employee/IEmployeesState';
+import {getEmployees} from '../utils/localStorage';
 
-const initialState = {
-    employees: []
-} as IEmployeesState;
+const initialState = getEmployees();
 
 //actions
 const ADD = '@@VM/employee/ADD';
@@ -11,7 +10,7 @@ const ADD = '@@VM/employee/ADD';
 // action creators
 export const actionAddEmployee = (employee: IEmployee): {
     type: string;
-    payload: IEmployee
+    payload: IEmployee;
 } => ({
     type: ADD,
     payload: employee
@@ -20,7 +19,7 @@ export const actionAddEmployee = (employee: IEmployee): {
 // reducer
 export default (state: IEmployeesState = initialState, action: { type: string; payload?: any; }) => {
     const handler = {
-        ADD: () => ({...state, employees: [state.employees, ...action.payload]})
+        [ADD]: () => ({...state, employees: [...state.employees, action.payload]})
     }[action.type];
     return handler ? handler() : state;
 };
