@@ -1,4 +1,4 @@
-import IEmployee from "./IEmployee";
+import IEmployee from './IEmployee';
 interface IEmployeesState {
     employees: IEmployee[];
 }

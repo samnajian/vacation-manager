@@ -1,6 +1,6 @@
-import {combineReducers} from "redux";
-import EmployeeReduce from "./employeeReducer";
-import RequestReducer from "./requestReducer";
+import {combineReducers} from 'redux';
+import EmployeeReduce from './employeeReducer';
+import RequestReducer from './requestReducer';
 
 /*
  * We combine all reducers into a single object before updated data is dispatched (sent) to store

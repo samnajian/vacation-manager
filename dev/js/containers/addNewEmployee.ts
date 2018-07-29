@@ -1,7 +1,7 @@
-import {connect} from "react-redux";
-import NewEmployee from "../components/NewEmployee";
-import {actionAddEmployee} from "../reducers/employeeReducer";
-import IEmployee from "../reducers/employee/IEmployee";
+import {connect} from 'react-redux';
+import NewEmployee from '../components/NewEmployee';
+import {actionAddEmployee} from '../reducers/employeeReducer';
+import IEmployee from '../reducers/employee/IEmployee';
 
 interface IDispatchProps {
     save: (employee: IEmployee) => {};

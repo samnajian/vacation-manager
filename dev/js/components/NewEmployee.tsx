@@ -1,8 +1,8 @@
-import React from "react";
-import Row from "./elements/Row";
-import Button from "./elements/Button";
-import Input from "./elements/Input";
-import Label from "./elements/Label";
+import React from 'react';
+import Row from './elements/Row';
+import Button from './elements/Button';
+import Input from './elements/Input';
+import Label from './elements/Label';
 
 const NewEmployee = ({save}) => {
     let values = {};
@@ -19,26 +19,26 @@ const NewEmployee = ({save}) => {
         <Row>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <Label htmlFor="employeeFirstName">
+                    <Label htmlFor='employeeFirstName'>
                         First Name
                     </Label>
-                    <Input type="text" id="employeeFirstName" name="employee[firstName]" onChange={onInputChange}/>
+                    <Input type='text' id='employeeFirstName' name='employee[firstName]' onChange={onInputChange}/>
                 </div>
                 <div>
-                    <Label htmlFor="employeeLastName">
+                    <Label htmlFor='employeeLastName'>
                         Last Name
                     </Label>
-                    <Input type="text" id="employeeLastName" name="employee[lastName]" onChange={onInputChange}/>
+                    <Input type='text' id='employeeLastName' name='employee[lastName]' onChange={onInputChange}/>
                 </div>
                 <div>
-                    <Label htmlFor="employeeAllowedVacations">
+                    <Label htmlFor='employeeVacationEntitlement'>
                         Allowed vacations:
                     </Label>
-                    <Input type="number" id="employeeAllowedVacations" name="employee[allowedVacations]"
-                           onChange={onInputChange} min="0"/>
+                    <Input type='number' id='employeeVacationEntitlement' name='employee[vacationEntitlement]'
+                           onChange={onInputChange} min='0'/>
                 </div>
                 <div>
-                    <Button type="submit" primary={true}>Save</Button>
+                    <Button type='submit' primary={true}>Save</Button>
                 </div>
             </form>
         </Row>

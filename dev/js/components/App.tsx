@@ -1,10 +1,10 @@
-import React, {Fragment} from "react";
-import {Route, Switch} from "react-router-dom";
-import AddNewEmployee from "../containers/add-new-employee";
-import RequestVacation from "../containers/request-vacation";
-import RequestsList from "../containers/requests-list";
-import Header from "./Header";
-import Content from "./Content";
+import React, {Fragment} from 'react';
+import {Route, Switch} from 'react-router-dom';
+import AddNewEmployee from '../containers/addNewEmployee';
+import RequestVacation from '../containers/requestVacation';
+import RequestsList from '../containers/requestsList';
+import Header from './Header';
+import Content from './Content';
 
 require('../../scss/style.scss');
 

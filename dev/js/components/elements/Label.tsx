@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {fontColor, labelPadding} from "./settings";
+import styled from 'styled-components';
+import {fontColor, labelPadding} from './settings';
 
 const Label = styled.label`
     color: ${fontColor};

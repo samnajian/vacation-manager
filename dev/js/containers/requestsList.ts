@@ -1,5 +1,5 @@
-import {connect} from "react-redux";
-import Requests from "../components/Requests";
+import {connect} from 'react-redux';
+import Requests from '../components/Requests';
 
 const mapStateToProps = (state) => ({
     users: state.users

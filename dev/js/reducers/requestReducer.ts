@@ -3,7 +3,7 @@ const initialState = {
 };
 
 //actions
-const ADD_REQUEST = "@@VM/request/ADD";
+const ADD_REQUEST = '@@VM/request/ADD';
 
 // action creators
 export const actionAddRequest = (employeeData) => ({

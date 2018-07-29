@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import PropTypes from "react-proptypes";
-import {defaultColor, fontColor, inputHeight, primaryColor} from "./settings";
+import styled from 'styled-components';
+import PropTypes from 'react-proptypes';
+import {defaultColor, fontColor, inputHeight, primaryColor} from './settings';
 
 interface IButtonProps {
     primary: boolean;
