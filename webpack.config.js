@@ -1,4 +1,4 @@
-const path = require('path');
+const path    = require('path');
 const webpack = require('webpack');
 
 module.exports = {
@@ -31,7 +31,7 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
-                test:   /\.scss/,
+                test:   /\.scss|\.css/,
                 loader: 'style-loader!css-loader!sass-loader'
             }
         ]

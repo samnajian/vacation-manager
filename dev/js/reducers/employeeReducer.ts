@@ -19,7 +19,7 @@ export const actionAddEmployee = (employee: IEmployee): {
 // reducer
 export default (state: IEmployeesState = initialState, action: { type: string; payload?: any; }) => {
     const handler = {
-        [ADD]: () => ({...state, employees: [...state.employees, action.payload]})
+        [ADD]: () => ({...state, employees: [...state.employees, {...action.payload, id: new Date().getTime()}]})
     }[action.type];
     return handler ? handler() : state;
 };

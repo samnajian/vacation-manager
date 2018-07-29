@@ -1,8 +1,9 @@
 interface IEmployee {
+    id: number;
     firstName: string;
     lastName: string;
     birthDate: string;
-    allowdVacations: number;
+    vacationEntitlement: number;
 }
 
 export default IEmployee;
