@@ -1,6 +1,6 @@
 import IEmployee from '../reducers/employee/IEmployee';
 import IRequest from '../reducers/request/IRequest';
-import dateDifferenceInDays from './dateDuration';
+import dateDifferenceInDays from './dateDifferenceInDays';
 
 export interface IRemainingVacationBudget {
     employeeId: number;

@@ -6,6 +6,7 @@ import RequestsList from '../containers/requestsList';
 import Header from './Header';
 import Content from './Content';
 import {Container} from './elements';
+
 require('../../scss/style.scss');
 
 const App = () => (
