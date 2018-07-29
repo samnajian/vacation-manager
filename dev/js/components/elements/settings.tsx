@@ -9,3 +9,6 @@ export const inputHeight = '2rem';
 
 //Paddings
 export const labelPadding = '0.3rem';
+
+//Sizes
+export const mobileWidth = 768;

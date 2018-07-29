@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'react-proptypes';
-import Row from './elements/Row';
-import Button from './elements/Button';
-import Input from './elements/Input';
-import Label from './elements/Label';
+import {Button, Input, Label, Row} from './elements';
 import IEmployee from '../reducers/employee/IEmployee';
 
 interface INewEmpyloeeFormProps {
@@ -52,30 +49,30 @@ class NewEmployee extends Component<INewEmpyloeeFormProps, INewEmployeeState> {
         return (
             <Row>
                 <form onSubmit={this.handleSubmit}>
-                    <div>
+                    <Row>
                         <Label htmlFor='employeeFirstName'>
                             First Name
                         </Label>
                         <Input type='text' id='employeeFirstName' name='employee[firstName]'
                                onChange={this.onInputChange}/>
-                    </div>
-                    <div>
+                    </Row>
+                    <Row>
                         <Label htmlFor='employeeLastName'>
                             Last Name
                         </Label>
                         <Input type='text' id='employeeLastName' name='employee[lastName]'
                                onChange={this.onInputChange}/>
-                    </div>
-                    <div>
+                    </Row>
+                    <Row>
                         <Label htmlFor='employeeVacationEntitlement'>
-                            Allowed vacations:
+                            Allowed vacations
                         </Label>
                         <Input type='number' id='employeeVacationEntitlement' name='employee[vacationEntitlement]'
                                onChange={this.onInputChange} min='0'/>
-                    </div>
-                    <div>
+                    </Row>
+                    <Row>
                         <Button type='submit' primary={true}>Save</Button>
-                    </div>
+                    </Row>
                 </form>
             </Row>
         );

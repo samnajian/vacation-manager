@@ -21,4 +21,4 @@ Input.propTypes = {
     type: PropTypes.string
 };
 
-export default Input;
+export {Input};

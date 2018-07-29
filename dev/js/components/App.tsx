@@ -5,19 +5,24 @@ import RequestVacation from '../containers/requestVacation';
 import RequestsList from '../containers/requestsList';
 import Header from './Header';
 import Content from './Content';
+import {Container} from './elements';
 
 require('../../scss/style.scss');
 
 const App = () => (
     <Fragment>
-        <Header>Header</Header>
-        <Content>
-            <Switch>
-                <Route path='/' exact component={AddNewEmployee}/>
-                <Route path='/request' component={RequestVacation}/>
-                <Route path='/requests' component={RequestsList}/>
-            </Switch>
-        </Content>
+        <Container>
+            <Header/>
+        </Container>
+        <Container>
+            <Content>
+                <Switch>
+                    <Route path='/' exact component={AddNewEmployee}/>
+                    <Route path='/request' component={RequestVacation}/>
+                    <Route path='/requests' component={RequestsList}/>
+                </Switch>
+            </Content>
+        </Container>
     </Fragment>
 );
 
