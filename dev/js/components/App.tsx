@@ -10,10 +10,10 @@ require('../../scss/style.scss');
 
 const App = () => (
     <Fragment>
-        <Header></Header>
+        <Header>Header</Header>
         <Content>
             <Switch>
-                <Route path="/" exact component={AddNewEmployee}/>
+                <Route path='/' exact component={AddNewEmployee}/>
                 <Route path='/request' component={RequestVacation}/>
                 <Route path='/requests' component={RequestsList}/>
             </Switch>

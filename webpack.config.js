@@ -2,24 +2,33 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
+    mode:      process.env.ENV || 'development',
     devServer: {
         inline:             true,
         contentBase:        './src',
         port:               3000,
-        historyApiFallback: true
+        historyApiFallback: true,
     },
     devtool:   'cheap-module-eval-source-map',
-    entry:     './dev/js/index.js',
+    entry:     './dev/js/index.tsx',
+    resolve:   {
+        extensions: ['.ts', '.tsx', '.js'] // <-- Had to add the .js one
+    },
     module:    {
-        loaders: [
+        rules: [
+            {
+                test:    /\.tsx?$/,
+                loader:  "ts-loader",
+                exclude: /node_modules/
+            },
             {
                 test:    /\.js$/,
-                loader:  'babel-loader',
+                loader:  'babel-loader?cacheDirectory=true',
                 query:   {
-                    presets: ['stage-0', 'react', 'env']
+                    presets: ['stage-0', 'react', 'env'],
+                    plugins: ['transform-object-rest-spread']
                 },
                 exclude: /node_modules/,
-                plugins: ['transform-object-rest-spread']
             },
             {
                 test:   /\.scss/,
@@ -28,7 +37,7 @@ module.exports = {
         ]
     },
     output:    {
-        path:     'src',
+        path:     path.resolve(__dirname, 'src'),
         filename: 'js/bundle.min.js'
     },
     plugins:   [

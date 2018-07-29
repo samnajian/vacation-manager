@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import {fontColor, labelPadding} from "./settings";
 
-const Label = styled.label.attrs({
-    type: props => props.type
-})`
+const Label = styled.label`
     color: ${fontColor};
     width: 100%;
     display: block;
@@ -11,4 +9,6 @@ const Label = styled.label.attrs({
     font-weight: 400;
     padding: ${labelPadding}
 `;
+
+
 export default Label;

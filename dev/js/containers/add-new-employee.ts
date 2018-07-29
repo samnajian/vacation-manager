@@ -1,10 +1,14 @@
-import React, {Component, Fragment} from "react";
 import {connect} from "react-redux";
 import NewEmployee from "../components/NewEmployee";
 import {actionAddEmployee} from "../reducers/employeeReducer";
+import IEmployee from "../reducers/employee/IEmployee";
 
-const matchDispatchToProps = (dispatch) => ({
-    save: (values) => dispatch(actionAddEmployee(values))
+interface IDispatchProps {
+    save: (employee: IEmployee) => {};
+}
+
+const matchDispatchToProps = (dispatch): IDispatchProps => ({
+    save: (employee: IEmployee) => dispatch(actionAddEmployee(employee))
 });
 
 const mapStateToProps = () => ({});

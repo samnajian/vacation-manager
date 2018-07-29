@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import PropTypes from "react-proptypes";
-import {fontColor, lightGrayColor, inputHeight} from "./settings";
+import {fontColor, inputHeight, lightGrayColor} from "./settings";
 
 const Input = styled.input.attrs({
     type: props => props.type

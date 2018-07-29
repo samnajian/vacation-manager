@@ -35,10 +35,10 @@ const NewEmployee = ({save}) => {
                         Allowed vacations:
                     </Label>
                     <Input type="number" id="employeeAllowedVacations" name="employee[allowedVacations]"
-                           onChange={onInputChange}/>
+                           onChange={onInputChange} min="0"/>
                 </div>
                 <div>
-                    <Button type="submit" primary>Save</Button>
+                    <Button type="submit" primary={true}>Save</Button>
                 </div>
             </form>
         </Row>
