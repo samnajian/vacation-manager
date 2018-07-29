@@ -2,19 +2,25 @@ import {connect} from 'react-redux';
 import Request from '../components/Request';
 import IEmployee from '../reducers/employee/IEmployee';
 import {actionAddRequest} from '../reducers/requestReducer';
-import getRemainingVacationBudgetForEmployee from '../utils/getRemainingVacationBudgetForEmployee';
+import getRemainingVacationBudgetForEmployee, {IRemainingVacationBudget} from '../utils/getRemainingVacationBudgetForEmployee';
+import IRequest from '../reducers/request/IRequest';
 
-const mapStateToProps = (state) => ({
+interface IDispatchProps {
+    save: (request: IRequest) => {};
+}
+
+interface IStateProps {
+    employees: IEmployee[];
+    remainingBudgets: IRemainingVacationBudget[];
+}
+
+const mapStateToProps = (state): IStateProps => ({
     employees: state.employees.employees,
     remainingBudgets: state.employees.employees.map(getRemainingVacationBudgetForEmployee(state.requests.requests))
 });
 
-interface IDispatchProps {
-    save: (employee: IEmployee) => {};
-}
-
 const matchDispatchToProps = (dispatch): IDispatchProps => ({
-    save: (employee: IEmployee) => dispatch(actionAddRequest(employee))
+    save: (request: IRequest) => dispatch(actionAddRequest(request))
 });
 
 export default connect(mapStateToProps, matchDispatchToProps)(Request);

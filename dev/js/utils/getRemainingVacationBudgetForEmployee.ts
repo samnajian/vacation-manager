@@ -1,5 +1,6 @@
 import IEmployee from '../reducers/employee/IEmployee';
 import IRequest from '../reducers/request/IRequest';
+import dateDifferenceInDays from './dateDuration';
 
 export interface IRemainingVacationBudget {
     employeeId: number;
@@ -11,9 +12,9 @@ export default (requests: IRequest[]) => (employee: IEmployee): IRemainingVacati
         .filter((request: IRequest) => request.employeeId == employee.id)
         .reduce((all, current: IRequest) => {
             if (current.status === true) {
-                all += current.duration;
+                const duration = dateDifferenceInDays(current.toDate, current.fromDate) + 1;
+                all += duration;
             }
-
             return all
         }, 0);
 

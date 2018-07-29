@@ -60,6 +60,12 @@
     "webpack-hot-middleware": "^2.22.3"
   },
   "jest": {
+    "globals": {
+      "ts-jest": {
+        "skipBabel": true,
+        "enableTsDiagnostics": true
+      }
+    },
     "moduleFileExtensions": [
       "ts",
       "js",

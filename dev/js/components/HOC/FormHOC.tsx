@@ -37,20 +37,23 @@ const FormHOC = (InnerFormComponent) => class extends Component<IFormProps, IFor
     private onInputChange = e => {
         const key = e.currentTarget.name;
         const value = e.target.value;
-        console.log(key, value);
-        this.setState(state =>
+        this.setFormState(key, value);
+    };
+
+    private setFormState = (key: string, value: any) => this.setState(
+        state =>
             ({
                 ...state,
                 data: {...state.data, [key]: value}
             })
-        )
-    };
+    );
 
     render() {
         return (
             <Row>
                 <form onSubmit={this.handleSubmit}>
-                    <InnerFormComponent onInputChange={this.onInputChange} {...this.props}/>
+                    <InnerFormComponent onInputChange={this.onInputChange} {...this.props}
+                                        setFormState={this.setFormState}/>
                 </form>
             </Row>
         );

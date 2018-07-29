@@ -1,5 +1,6 @@
 import {getRequests} from '../utils/localStorage';
 import IRequestState from './request/IRequestState';
+import IRequest from './request/IRequest';
 
 const initialState = getRequests();
 
@@ -7,10 +8,16 @@ const initialState = getRequests();
 const ADD = '@@VM/request/ADD';
 
 // action creators
-export const actionAddRequest = (employeeData) => ({
+interface IAddAction {
+    type: string;
+    payload: IRequest;
+}
+
+export const actionAddRequest = (request: IRequest): IAddAction => ({
     type: ADD,
-    payload: employeeData
+    payload: request
 });
+
 
 // reducer
 export default (state: IRequestState = initialState, action) => {
