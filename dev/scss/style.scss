@@ -4,3 +4,17 @@
   box-sizing: border-box;
   font-family: Helvetica;
 }
+
+// React datepicker
+.react-datepicker-wrapper {
+  display: flex;
+}
+
+.react-datepicker__input-container {
+  display: flex;
+  flex: 1;
+}
+
+.react-datepicker__input-container input {
+  flex: 1;
+}

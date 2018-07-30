@@ -53,7 +53,14 @@ const updateRequestStatus = (requestId: number, newStatus, requests) => requests
 // reducer
 export default (state: IRequestState = initialState, action) => {
     const handler = {
-        [ADD]: () => ({...state, requests: [...state.requests, {...action.payload, id: new Date().getTime()}]}),
+        [ADD]: () => ({
+            ...state, requests: [
+                ...state.requests, {
+                    ...action.payload,
+                    id: new Date().getTime(),
+                    status: null
+                }]
+        }),
         [REJECT]: () => ({
             ...state, requests: updateRequestStatus(action.payload, false, state.requests)
         }),

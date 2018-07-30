@@ -3,8 +3,9 @@ import PropTypes from 'react-proptypes';
 import {Row} from './../elements';
 
 interface IFormProps {
-    save: (data) => {}
+    save: (data: object) => any;
 }
+
 
 interface IFormState {
     data: object;
@@ -20,7 +21,9 @@ const FormHOC = (InnerFormComponent) => class extends Component<IFormProps, IFor
         save: PropTypes.func.isRequired
     };
 
-    static defaultProps = {};
+    static defaultProps = {
+        save: (data) => {}
+    };
 
     /**
      * Todo: Add validation before saving the form
@@ -29,9 +32,13 @@ const FormHOC = (InnerFormComponent) => class extends Component<IFormProps, IFor
 
     private handleSubmit = e => {
         e.preventDefault();
-        if (this.validate(this.state.data)) {
-            this.props.save(this.state.data);
+        if (!this.validate(this.state)) {
+            return;
         }
+        this.props.save(this.state.data);
+
+        // clear form
+        this.setState({data: {}});
     };
 
     private onInputChange = e => {
@@ -44,7 +51,9 @@ const FormHOC = (InnerFormComponent) => class extends Component<IFormProps, IFor
         state =>
             ({
                 ...state,
-                data: {...state.data, [key]: value}
+                data: {
+                    ...state.data, [key]: value
+                }
             })
     );
 
@@ -52,7 +61,7 @@ const FormHOC = (InnerFormComponent) => class extends Component<IFormProps, IFor
         return (
             <Row>
                 <form onSubmit={this.handleSubmit}>
-                    <InnerFormComponent onInputChange={this.onInputChange} {...this.props}
+                    <InnerFormComponent onInputChange={this.onInputChange} {...this.state.data} {...this.props}
                                         setFormState={this.setFormState}/>
                 </form>
             </Row>

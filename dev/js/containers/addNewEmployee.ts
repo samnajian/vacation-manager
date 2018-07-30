@@ -4,7 +4,7 @@ import {actionAddEmployee} from '../reducers/employeeReducer';
 import IEmployee from '../reducers/employee/IEmployee';
 
 interface IDispatchProps {
-    save: (employee: IEmployee) => {};
+    save: (data: object) => any;
 }
 
 const matchDispatchToProps = (dispatch): IDispatchProps => ({

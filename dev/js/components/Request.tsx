@@ -1,29 +1,29 @@
 import React, {Component} from 'react';
 import PropTypes from 'react-proptypes';
-import {Button, DatePickerInput, Label, Row, Select, H3} from './elements';
+import {Button, DatePickerInput, Label, Row} from './elements';
 import FormHOC from './HOC/FormHOC';
 import IEmployee from '../reducers/employee/IEmployee';
 import {IRemainingVacationBudget} from '../utils/getRemainingVacationBudgetForEmployee';
 import moment, {Moment} from 'moment';
+import EmployeesDropdown from './EmployeesDropdown';
 
 interface IRequestProps {
     employees: IEmployee[];
     remainingBudgets: IRemainingVacationBudget[];
     onInputChange: (e) => {};
     setFormState: (key: string, value: any) => {};
+    fromDate: number;
+    toDate: number;
+    employeeId: number;
 }
 
 interface IRequestState {
     selectedEmployeeId: number;
-    fromDate: number,
-    toDate: number,
 }
 
 class Request extends Component<IRequestProps, IRequestState> {
     state = {
         selectedEmployeeId: -1,
-        fromDate: null,
-        toDate: null
     };
 
     static defaultProps = {
@@ -40,16 +40,15 @@ class Request extends Component<IRequestProps, IRequestState> {
     };
 
     private onNameChange = (e) => {
-        const selectedId = e.target.value;
-        if (selectedId <= 0) {
-            return;
+        const selectedEmployeeId = e.target.value;
+        this.setState(state => ({...state, selectedEmployeeId}));
+        if (selectedEmployeeId > 0) {
+            this.props.setFormState('employeeId', selectedEmployeeId);
         }
-        this.setState(state => ({...state, selectedEmployeeId: selectedId}));
-        this.props.onInputChange(e);
     };
 
     private getRemainingBudget = (): number => {
-        if (this.state.selectedEmployeeId === -1) {
+        if (this.state.selectedEmployeeId == -1) {
             return 0;
         }
 
@@ -59,23 +58,23 @@ class Request extends Component<IRequestProps, IRequestState> {
     };
 
     private onDateChange = (key: string) => (date: Moment) => {
-        this.setState(state => ({...state, [key]: date}));
         this.props.setFormState(key, date.unix());
     };
 
     render() {
-        const {employees, onInputChange} = this.props;
+        const {employees, fromDate, toDate, employeeId} = this.props;
         return (<>
             <Row>
                 <Label htmlFor='requestName'>
                     Name:
                 </Label>
-                <Select id='requestName' name='employeeId' onChange={this.onNameChange}>
-                    <option value="-1">Select your name</option>
-                    {employees.map((employee: IEmployee) =>
-                        <option key={employee.id}
-                                value={employee.id}>{employee.firstName}&nbsp;{employee.lastName}</option>)}
-                </Select>
+                <EmployeesDropdown
+                    onChange={this.onNameChange}
+                    employees={employees}
+                    required={true}
+                    noSelectOption="Select your name"
+                    selected={`${employeeId}`}
+                />
             </Row>
             <Row>
                 <Label>
@@ -87,15 +86,21 @@ class Request extends Component<IRequestProps, IRequestState> {
                     From:
                 </Label>
 
-                <DatePickerInput id='requestFrom' selected={this.state.fromDate} name='fromDate'
+                <DatePickerInput required={true}
+                                 id='requestFrom'
+                                 selected={fromDate ? moment.unix(fromDate) : null}
+                                 name='fromDate'
                                  onChange={this.onDateChange('fromDate')}
-                                 minDate={moment()}/>
+                                 minDate={moment()}
+                />
                 <Label htmlFor='requestTo'>
                     To:
                 </Label>
-                <DatePickerInput id='requestTo' name='toDate' selected={this.state.toDate}
+                <DatePickerInput required={true}
+                                 id='requestTo' name='toDate'
+                                 selected={toDate ? moment.unix(toDate) : null}
                                  onChange={this.onDateChange('toDate')}
-                                 minDate={this.state.fromDate}
+                                 minDate={fromDate ? moment.unix(fromDate) : null}
                 />
             </Row>
             <Row>
