@@ -1,4 +1,5 @@
 interface IRequest {
+    id: number,
     employeeId: number;
     fromDate: number;
     toDate: number;

@@ -6,6 +6,7 @@ export const lightGrayColor = '#efefef';
 
 //Heights
 export const inputHeight = '2rem';
+export const smallHeight = '1.5rem';
 
 //Paddings
 export const labelPadding = '0.3rem';

@@ -2,8 +2,12 @@ import styled from 'styled-components';
 import PropTypes from 'react-proptypes';
 import {fontColor, inputHeight, lightGrayColor} from './settings';
 
-const Input = styled.input.attrs({
-    type: props => props.type
+interface IInputProps {
+    type: string;
+}
+
+const Input = styled.input.attrs<IInputProps>({
+    type: (props: IInputProps) => props.type
 })`
     background: #fff;
     color: ${fontColor};

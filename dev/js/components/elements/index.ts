@@ -1,4 +1,7 @@
 export {Row} from './Row';
+export {Col} from './Col';
+export {TbRow} from './TbRow';
+export {TbCol} from './TbCol';
 export {Container} from './Container';
 export {Button} from './Button';
 export {Input} from './Input';
