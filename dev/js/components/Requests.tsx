@@ -45,10 +45,10 @@ const DataRow = ({request, employees, remainingBudgets, approve, reject}) => <>
     </Col>
     <Col span={1}>
         {request.status === null &&
-            <Row>
-                <Button size={'small'} onClick={() => reject(request)}>Reject</Button>
-                <Button size={'small'} primary onClick={() => approve(request)}>Approve</Button>
-            </Row>
+        <Row>
+            <Button size={'small'} onClick={() => reject(request)}>Reject</Button>
+            <Button size={'small'} primary onClick={() => approve(request)}>Approve</Button>
+        </Row>
         }
         {request.status === true && <span>Approved</span>}
     </Col>
@@ -56,23 +56,22 @@ const DataRow = ({request, employees, remainingBudgets, approve, reject}) => <>
 
 const Requests = ({openRequests, employees, remainingBudgets, isMobile, approve, reject}) => isMobile
     ? <Row>
-        {
-            openRequests.map((request: IRequest) =>
-                <TbRow key={request.id}>
-                    <TbCol mobileOnly>
-                        <HeaderRow/>
-                    </TbCol>
-                    <Col>
-                        <DataRow
-                            request={request}
-                            employees={employees}
-                            remainingBudgets={remainingBudgets}
-                            approve={approve}
-                            reject={reject}
-                        />
-                    </Col>
-                </TbRow>
-            )
+        {openRequests.map((request: IRequest) =>
+            <TbRow key={request.id}>
+                <TbCol mobileOnly>
+                    <HeaderRow/>
+                </TbCol>
+                <Col>
+                    <DataRow
+                        request={request}
+                        employees={employees}
+                        remainingBudgets={remainingBudgets}
+                        approve={approve}
+                        reject={reject}
+                    />
+                </Col>
+            </TbRow>
+        )
         }</Row>
     : <Row>
         {approve}

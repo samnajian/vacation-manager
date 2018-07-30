@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'react-proptypes';
-import {Button, DatePickerInput, Input, Label, Row} from './elements';
+import {Button, DatePickerInput, Input, Label, Row, H3} from './elements';
 
 import FormHOC from './HOC/FormHOC';
 import {Moment} from 'moment';

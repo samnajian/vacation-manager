@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {mobileWidth} from './settings';
 
-const Row = styled.div`
+const Row = styled.div.attrs({className: 'row'})`
     display: flex;
     padding: 0.5rem;
     flex-direction: column;
@@ -10,5 +10,4 @@ const Row = styled.div`
       flex-direction: row;
     }
 `;
-
 export {Row};

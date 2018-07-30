@@ -6,6 +6,7 @@ import RequestsList from '../containers/requestsList';
 import Header from './Header';
 import Content from './Content';
 import {Container} from './elements';
+import WithTitle from './HOC/WithTitle';
 
 require('../../scss/style.scss');
 
@@ -17,9 +18,9 @@ const App = () => (
         <Container>
             <Content>
                 <Switch>
-                    <Route path='/' exact component={AddNewEmployee}/>
-                    <Route path='/request' component={RequestVacation}/>
-                    <Route path='/requests' component={RequestsList}/>
+                    <Route path='/' exact component={WithTitle('Add New Employee')(AddNewEmployee)}/>
+                    <Route path='/request' component={WithTitle('Request Vacations')(RequestVacation)}/>
+                    <Route path='/requests' component={WithTitle('Vacation Requests')(RequestsList)}/>
                 </Switch>
             </Content>
         </Container>
