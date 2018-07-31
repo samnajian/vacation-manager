@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 import PropTypes from 'react-proptypes';
 import {fontColor, inputHeight, lightGrayColor} from './settings';
+import {InputHTMLAttributes} from 'react';
 
-interface IInputProps {
-    type: string;
-}
-
-const Input = styled.input.attrs<IInputProps>({
-    type: (props: IInputProps) => props.type
+const Input = styled.input.attrs<InputHTMLAttributes<any>>({
+    type: (props: InputHTMLAttributes<any>) => props.type
 })`
     background: #fff;
     color: ${fontColor};

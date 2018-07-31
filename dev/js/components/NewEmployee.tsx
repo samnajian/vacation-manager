@@ -1,84 +1,79 @@
-import React, {Component} from 'react';
+import React, {StatelessComponent} from 'react';
 import PropTypes from 'react-proptypes';
 import {Button, DatePickerInput, Input, Label, Row} from './elements';
 import moment, {Moment} from 'moment';
 import FormHOC from './HOC/FormHOC';
 
 interface INewEmployeeInnerFormProps {
-    onInputChange: (e) => {};
-    setFormState: (key: string, value: any) => {};
+    onInputChange: (e) => void;
+    setFormState: (key: string, value: any) => void;
     birthDate: number;
     firstName: string;
     lastName: string;
-    vacationEntitlement: number;
+    vacationEntitlement: string;
 }
 
-interface INewEmployeeInnerFormState {
+const NewEmployeeInnerForm: StatelessComponent<INewEmployeeInnerFormProps> = ({
+                                                                                  onInputChange,
+                                                                                  firstName,
+                                                                                  lastName,
+                                                                                  birthDate,
+                                                                                  vacationEntitlement,
+                                                                                  setFormState
+                                                                              }) => (<>
+    <Row>
+        <Label htmlFor='employeeFirstName'>
+            First Name:
+        </Label>
+        <Input required={true} autoComplete={'given-name'} type='text' id='employeeFirstName'
+               name='firstName'
+               onChange={onInputChange} value={firstName}/>
+    </Row>
+    <Row>
+        <Label htmlFor='employeeLastName'>
+            Last Name:
+        </Label>
+        <Input required={true} type='text' autoComplete={'family-name'} id='employeeLastName'
+               name='lastName'
+               onChange={onInputChange} value={lastName}/>
+    </Row>
+    <Row>
+        <Label htmlFor='employeeBirthDate'>
+            Birth date:
+        </Label>
+        <DatePickerInput required={true} selected={birthDate ? moment.unix(birthDate) : null}
+                         onChange={(date: Moment) => setFormState('birthDate', date.unix())}
+        />
+    </Row>
+    <Row>
+        <Label htmlFor='employeeVacationEntitlement'>
+            Vacation Entitlement:
+        </Label>
+        <Input required={true} type='number' id='employeeVacationEntitlement' name='vacationEntitlement'
+               onChange={onInputChange} min='0' value={vacationEntitlement}/>
+    </Row>
+    <Row>
+        <Button type='submit' primary={true}>Save</Button>
+    </Row>
+</>);
 
-}
+NewEmployeeInnerForm.displayName = 'NewEmployeeInnerForm';
 
-class NewEmployeeInnerForm extends Component<INewEmployeeInnerFormProps, INewEmployeeInnerFormState> {
+NewEmployeeInnerForm.defaultProps = {
+    onInputChange: (e) => {},
+    setFormState: (key: string, value: any) => {},
+    birthDate: null,
+    firstName: "",
+    lastName: "",
+    vacationEntitlement: "",
+};
 
-    state = {};
-
-    static defaultProps = {
-        onInputChange: (e) => {},
-        setFormDate: (key: string, value: any) => {},
-        birthDate: null,
-        firstName: "",
-        lastName: "",
-        vacationEntitlement: 0,
-    };
-
-    static propTypes = {
-        onInputChange: PropTypes.func.isRequired,
-        setFormDate: PropTypes.func.isRequired,
-    };
-
-    private onBirthDateChange = (date: Moment) => {
-        this.props.setFormState('birthDate', date.unix())
-    };
-
-    render() {
-        const {onInputChange, firstName, lastName, birthDate, vacationEntitlement} = this.props;
-        return (<>
-            <Row>
-                <Label htmlFor='employeeFirstName'>
-                    First Name:
-                </Label>
-                <Input required={true} autoComplete={'given-name'} type='text' id='employeeFirstName'
-                       name='firstName'
-                       onChange={onInputChange} value={firstName}/>
-            </Row>
-            <Row>
-                <Label htmlFor='employeeLastName'>
-                    Last Name:
-                </Label>
-                <Input required={true} type='text' autoComplete={'family-name'} id='employeeLastName'
-                       name='lastName'
-                       onChange={onInputChange} value={lastName}/>
-            </Row>
-            <Row>
-                <Label htmlFor='employeeBirthDate'>
-                    Birth date:
-                </Label>
-                <DatePickerInput required={true} selected={birthDate ? moment.unix(birthDate) : null}
-                                 onChange={this.onBirthDateChange}
-                />
-            </Row>
-            <Row>
-                <Label htmlFor='employeeVacationEntitlement'>
-                    Vacation Entitlement:
-                </Label>
-                <Input required={true} type='number' id='employeeVacationEntitlement' name='vacationEntitlement'
-                       onChange={onInputChange} min='0' value={vacationEntitlement}/>
-            </Row>
-            <Row>
-                <Button type='submit' primary={true}>Save</Button>
-            </Row>
-
-        </>);
-    }
+NewEmployeeInnerForm.propTypes = {
+    onInputChange: PropTypes.func.isRequired,
+    birthDate: PropTypes.number,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    vacationEntitlement: PropTypes.string
 };
 
 export default FormHOC(NewEmployeeInnerForm);

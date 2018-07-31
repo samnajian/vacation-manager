@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {StatelessComponent} from 'react';
 import {Row} from './elements';
 
-const Content = ({children}) =>
+const Content: StatelessComponent = ({children}) =>
     <Row className='content'>{children}</Row>
 ;
 
+Content.displayName = "Content";
 export default Content;

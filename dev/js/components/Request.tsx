@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {StatelessComponent} from 'react';
 import PropTypes from 'react-proptypes';
 import {Button, DatePickerInput, Label, Row} from './elements';
 import FormHOC from './HOC/FormHOC';
@@ -6,108 +6,93 @@ import IEmployee from '../reducers/employee/IEmployee';
 import {IRemainingVacationBudget} from '../utils/getRemainingVacationBudgetForEmployee';
 import moment, {Moment} from 'moment';
 import EmployeesDropdown from './EmployeesDropdown';
+import getRemainingVacationBudget from '../utils/getRemainingVacationBudget';
 
 interface IRequestProps {
     employees: IEmployee[];
     remainingBudgets: IRemainingVacationBudget[];
-    onInputChange: (e) => {};
-    setFormState: (key: string, value: any) => {};
+    onInputChange: (e) => void;
+    setFormState: (key: string, value: any) => void;
     fromDate: number;
     toDate: number;
-    employeeId: number;
+    employeeId: string;
 }
 
-interface IRequestState {
-    selectedEmployeeId: number;
-}
-
-class Request extends Component<IRequestProps, IRequestState> {
-    state = {
-        selectedEmployeeId: -1,
-    };
-
-    static defaultProps = {
-        employees: [],
-        remainingBudgets: [],
-        onInputChange: (e) => {},
-        setFormState: (key: string, value: any) => {}
-    };
-
-    static propTypes = {
-        employees: PropTypes.array.isRequired,
-        remainingBudgets: PropTypes.array.isRequired,
-        onInputChange: PropTypes.func.isRequired,
-    };
-
-    private onNameChange = (e) => {
+const RequestInnerForm: StatelessComponent<IRequestProps> = ({employees, fromDate, toDate, employeeId, remainingBudgets, setFormState}) => {
+    const onNameChange = (e) => {
         const selectedEmployeeId = e.target.value;
-        this.setState(state => ({...state, selectedEmployeeId}));
         if (selectedEmployeeId > 0) {
-            this.props.setFormState('employeeId', selectedEmployeeId);
+            setFormState('employeeId', selectedEmployeeId);
         }
     };
 
-    private getRemainingBudget = (): number => {
-        if (this.state.selectedEmployeeId == -1) {
-            return 0;
-        }
 
-        return this.props.remainingBudgets.find(
-            (budget: IRemainingVacationBudget) => budget.employeeId == this.state.selectedEmployeeId
-        ).remainingBudget
+    const onDateChange = (key: string) => (date: Moment) => {
+        setFormState(key, date.unix());
     };
+    return (<>
+        <Row>
+            <Label htmlFor='requestName'>
+                Name:
+            </Label>
+            <EmployeesDropdown
+                onChange={onNameChange}
+                employees={employees}
+                required={true}
+                noSelectOption="Select your name"
+                selected={`${employeeId}`}
+            />
+        </Row>
+        <Row>
+            <Label>
+                Vacation budget left: {getRemainingVacationBudget(remainingBudgets, employeeId)}
+            </Label>
+        </Row>
+        <Row>
+            <Label htmlFor='requestFrom'>
+                From:
+            </Label>
 
-    private onDateChange = (key: string) => (date: Moment) => {
-        this.props.setFormState(key, date.unix());
-    };
+            <DatePickerInput required={true}
+                             id='requestFrom'
+                             selected={fromDate ? moment.unix(fromDate) : null}
+                             name='fromDate'
+                             onChange={onDateChange('fromDate')}
+                             minDate={moment()}
+            />
+            <Label htmlFor='requestTo'>
+                To:
+            </Label>
+            <DatePickerInput required={true}
+                             id='requestTo' name='toDate'
+                             selected={toDate ? moment.unix(toDate) : null}
+                             onChange={onDateChange('toDate')}
+                             minDate={fromDate ? moment.unix(fromDate) : null}
+            />
+        </Row>
+        <Row>
+            <Button type='submit' primary={true}>Save</Button>
+        </Row>
+    </>)
+};
 
-    render() {
-        const {employees, fromDate, toDate, employeeId} = this.props;
-        return (<>
-            <Row>
-                <Label htmlFor='requestName'>
-                    Name:
-                </Label>
-                <EmployeesDropdown
-                    onChange={this.onNameChange}
-                    employees={employees}
-                    required={true}
-                    noSelectOption="Select your name"
-                    selected={`${employeeId}`}
-                />
-            </Row>
-            <Row>
-                <Label>
-                    Vacation budget left: {this.getRemainingBudget()}
-                </Label>
-            </Row>
-            <Row>
-                <Label htmlFor='requestFrom'>
-                    From:
-                </Label>
+RequestInnerForm.defaultProps = {
+    employees: [],
+    remainingBudgets: [],
+    onInputChange: (e) => {},
+    setFormState: (key: string, value: any) => {},
+    fromDate: 0,
+    toDate: 0,
+    employeeId: "",
+};
 
-                <DatePickerInput required={true}
-                                 id='requestFrom'
-                                 selected={fromDate ? moment.unix(fromDate) : null}
-                                 name='fromDate'
-                                 onChange={this.onDateChange('fromDate')}
-                                 minDate={moment()}
-                />
-                <Label htmlFor='requestTo'>
-                    To:
-                </Label>
-                <DatePickerInput required={true}
-                                 id='requestTo' name='toDate'
-                                 selected={toDate ? moment.unix(toDate) : null}
-                                 onChange={this.onDateChange('toDate')}
-                                 minDate={fromDate ? moment.unix(fromDate) : null}
-                />
-            </Row>
-            <Row>
-                <Button type='submit' primary={true}>Save</Button>
-            </Row>
-        </>)
-    }
-}
-
-export default FormHOC(Request);
+RequestInnerForm.propTypes = {
+    employees: PropTypes.array.isRequired,
+    remainingBudgets: PropTypes.array.isRequired,
+    onInputChange: PropTypes.func.isRequired,
+    setFormState: PropTypes.func.isRequired,
+    fromDate: PropTypes.number,
+    toDate: PropTypes.number,
+    employeeId: PropTypes.string,
+};
+export default FormHOC(RequestInnerForm);
