@@ -1,8 +1,7 @@
-![](http://i.imgur.com/DUiL9yn.png)
+# Vacation request manager
 
-# React/Sass/Redux Boilerplate
+Simple React application bootstrapped [with](https://github.com/buckyroberts/React-Redux-Boilerplate)
 
-Boilerplate and guide for a React/Sass/Redux build.
 
 ## Getting Started
 
@@ -33,11 +32,15 @@ Watch for test changes
 
 To view your project, go to: [http://localhost:3000/](http://localhost:3000/)
 
-## Links
 
-- [Donate](https://www.patreon.com/thenewboston)
-- [thenewboston.com](https://thenewboston.com/)
-- [Facebook](https://www.facebook.com/TheNewBoston-464114846956315/)
-- [Twitter](https://twitter.com/bucky_roberts)
-- [Google+](https://plus.google.com/+BuckyRoberts)
-- [reddit](https://www.reddit.com/r/thenewboston/)
+#### Notes
+
+* Re-inventing the wheel for alot of cases has been favored!
+
+## Keywors
+
+- Typescript
+- React
+- Redux
+- Styled-components
+- Jest
