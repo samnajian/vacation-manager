@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'react-proptypes';
-import {Row} from './../elements';
+import {Panel} from './../elements';
+import {Button, Row} from '../elements';
 
 interface IFormProps {
     save: (data: object) => any;
@@ -59,12 +60,15 @@ const FormHOC = (InnerFormComponent) => class extends Component<IFormProps, IFor
 
     render() {
         return (
-            <Row>
+            <Panel>
                 <form onSubmit={this.handleSubmit}>
                     <InnerFormComponent onInputChange={this.onInputChange} {...this.state.data} {...this.props}
                                         setFormState={this.setFormState}/>
+                    <Row reversed>
+                        <Button type='submit' primary={true}>Save</Button>
+                    </Row>
                 </form>
-            </Row>
+            </Panel>
         );
     }
 };

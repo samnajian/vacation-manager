@@ -52,9 +52,6 @@ const NewEmployeeInnerForm: StatelessComponent<INewEmployeeInnerFormProps> = ({
         <Input required={true} type='number' id='employeeVacationEntitlement' name='vacationEntitlement'
                onChange={onInputChange} min='0' value={vacationEntitlement}/>
     </Row>
-    <Row>
-        <Button type='submit' primary={true}>Save</Button>
-    </Row>
 </>);
 
 NewEmployeeInnerForm.displayName = 'NewEmployeeInnerForm';

@@ -1,4 +1,5 @@
 export {Row} from './Row';
+export {Panel} from './Panel';
 export {Col} from './Col';
 export {TbRow} from './TbRow';
 export {TbCol} from './TbCol';
@@ -12,3 +13,4 @@ export {H2} from './H2';
 export {H3} from './H3';
 
 export {DatePickerInput} from './DatePickerInput';
+export {StyledNavLink} from './StyledNavLink';

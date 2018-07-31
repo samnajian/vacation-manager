@@ -1,6 +1,6 @@
 import React, {StatelessComponent} from 'react';
 import PropTypes from 'react-proptypes';
-import {Button, DatePickerInput, Label, Row} from './elements';
+import {Button, DatePickerInput, Label, Row, Col} from './elements';
 import FormHOC from './HOC/FormHOC';
 import IEmployee from '../reducers/employee/IEmployee';
 import {IRemainingVacationBudget} from '../utils/getRemainingVacationBudgetForEmployee';
@@ -60,6 +60,8 @@ const RequestInnerForm: StatelessComponent<IRequestProps> = ({employees, fromDat
                              onChange={onDateChange('fromDate')}
                              minDate={moment()}
             />
+        </Row>
+        <Row>
             <Label htmlFor='requestTo'>
                 To:
             </Label>
@@ -69,9 +71,6 @@ const RequestInnerForm: StatelessComponent<IRequestProps> = ({employees, fromDat
                              onChange={onDateChange('toDate')}
                              minDate={fromDate ? moment.unix(fromDate) : null}
             />
-        </Row>
-        <Row>
-            <Button type='submit' primary={true}>Save</Button>
         </Row>
     </>)
 };
