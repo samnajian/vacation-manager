@@ -12,7 +12,7 @@ const DataRow = ({request, employees, remainingBudgets, approve, reject}) => <>
         {formatTimestamp(request.fromDate)}
     </Col>
     <Col span={1}>
-        {formatTimestamp(request.fromDate)}
+        {formatTimestamp(request.toDate)}
     </Col>
     <Col span={1}>
         {getRemainingVacationBudget(remainingBudgets, request.employeeId)}
