@@ -13,12 +13,22 @@ To get started, first install all the necessary dependencies.
 
 Run an initial webpack build
 ```
-> webpack
+> build
 ```
 
 Start the development server (changes will now update live in browser)
 ```
-> npm run start
+> npm run dev
+```
+
+Run tests
+```
+> npm run test
+```
+
+Watch for test changes
+```
+> npm run test:watch
 ```
 
 To view your project, go to: [http://localhost:3000/](http://localhost:3000/)
