@@ -19,7 +19,7 @@ const App = () => (
             <Content>
                 <Switch>
                     <Route path='/' exact component={WithTitle('Add New Employee')(AddNewEmployee)}/>
-                    <Route path='/request' component={WithTitle('Request Vacations')(RequestVacation)}/>
+                    <Route path='/request' component={WithTitle('Request Vacation')(RequestVacation)}/>
                     <Route path='/requests' component={WithTitle('Vacation Requests')(RequestsList)}/>
                 </Switch>
             </Content>
